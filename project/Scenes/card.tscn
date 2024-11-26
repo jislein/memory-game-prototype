@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://c22kgx3ljahja"]
+
+[ext_resource type="Script" path="res://Scenes/card.gd" id="1_5a3je"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7tyo"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tfmo7"]
+bg_color = Color(0.06, 0.06, 0.06, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6rtgd"]
+bg_color = Color(0.12, 0.12, 0.12, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_le1yb"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Card" type="PanelContainer"]
+custom_minimum_size = Vector2(200, 200)
+script = ExtResource("1_5a3je")
+
+[node name="Element" type="Panel" parent="."]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorValue" type="ColorRect" parent="Element"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 1, 1)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o7tyo")
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_tfmo7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6rtgd")
+theme_override_styles/normal = SubResource("StyleBoxFlat_le1yb")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

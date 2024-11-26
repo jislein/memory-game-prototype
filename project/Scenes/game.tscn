@@ -1,0 +1,98 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn08te0w4fhex"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_kxctq"]
+[ext_resource type="PackedScene" uid="uid://c22kgx3ljahja" path="res://Scenes/card.tscn" id="2_vvsln"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tujxj"]
+bg_color = Color(0.0133907, 0.194698, 0, 1)
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kxctq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -131.0
+offset_right = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="MatchInfo" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="MoveCount" type="Label" parent="VBoxContainer/MatchInfo"]
+layout_mode = 2
+text = "Moves: 0"
+
+[node name="Time" type="Label" parent="VBoxContainer/MatchInfo"]
+layout_mode = 2
+text = "Time: 0:00"
+
+[node name="RestartButton" type="Button" parent="VBoxContainer/MatchInfo"]
+layout_mode = 2
+text = "RESTART"
+
+[node name="Background" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tujxj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Background"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Row1" type="HBoxContainer" parent="VBoxContainer/Background/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Card" parent="VBoxContainer/Background/VBoxContainer/Row1" instance=ExtResource("2_vvsln")]
+layout_mode = 2
+
+[node name="Card2" parent="VBoxContainer/Background/VBoxContainer/Row1" instance=ExtResource("2_vvsln")]
+layout_mode = 2
+
+[node name="Card3" parent="VBoxContainer/Background/VBoxContainer/Row1" instance=ExtResource("2_vvsln")]
+layout_mode = 2
+
+[node name="Row2" type="HBoxContainer" parent="VBoxContainer/Background/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Card4" parent="VBoxContainer/Background/VBoxContainer/Row2" instance=ExtResource("2_vvsln")]
+layout_mode = 2
+
+[node name="Card5" parent="VBoxContainer/Background/VBoxContainer/Row2" instance=ExtResource("2_vvsln")]
+layout_mode = 2
+
+[node name="Card6" parent="VBoxContainer/Background/VBoxContainer/Row2" instance=ExtResource("2_vvsln")]
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/MatchInfo/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="card_sent" from="VBoxContainer/Background/VBoxContainer/Row1/Card" to="." method="_on_card_card_sent"]
+[connection signal="card_sent" from="VBoxContainer/Background/VBoxContainer/Row1/Card2" to="." method="_on_card_card_sent"]
+[connection signal="card_sent" from="VBoxContainer/Background/VBoxContainer/Row1/Card3" to="." method="_on_card_card_sent"]
+[connection signal="card_sent" from="VBoxContainer/Background/VBoxContainer/Row2/Card4" to="." method="_on_card_card_sent"]
+[connection signal="card_sent" from="VBoxContainer/Background/VBoxContainer/Row2/Card5" to="." method="_on_card_card_sent"]
+[connection signal="card_sent" from="VBoxContainer/Background/VBoxContainer/Row2/Card6" to="." method="_on_card_card_sent"]
